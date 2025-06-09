@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>XPath Poster</title>
+  <title>XPath Auto Poster</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
-<body style="font-family: Arial; padding: 10px; width: 300px;">
-  <h3>XPath Poster</h3>
+<body>
+  <h2>XPath Auto Poster</h2>
 
-  <label>Input XPath:</label><br/>
-  <input type="text" id="inputXPath" style="width: 100%;"><br/><br/>
+  <label>Input XPath:</label>
+  <input type="text" id="inputXPath" placeholder="//div[@contenteditable='true']">
 
-  <label>Post Button XPath:</label><br/>
-  <input type="text" id="buttonXPath" style="width: 100%;"><br/><br/>
+  <label>Button XPath:</label>
+  <input type="text" id="buttonXPath" placeholder="//button[@data-testid='tweetButtonInline']">
 
-  <label>Post Interval (seconds):</label><br/>
-  <input type="number" id="postInterval" min="1" value="60" style="width: 100%;"><br/><br/>
+  <label>Post Interval (seconds):</label>
+  <input type="number" id="postInterval" min="1" value="60">
 
-  <label>Upload Posts (JSON):</label><br/>
-  <input type="file" id="jsonFile"><br/><br/>
+  <label>Upload Posts (JSON):</label>
+  <input type="file" id="jsonFile">
 
-  <button id="startBtn">Start Posting</button>
-  <button id="stopBtn">Stop</button>
-  <div id="status" style="margin-top: 10px;">Status: Idle</div>
+  <div class="button-row">
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
+  </div>
+
+  <div id="status">Status: Idle</div>
 
   <script src="popup.js"></script>
 </body>

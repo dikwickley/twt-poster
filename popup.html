@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XPath Poster</title>
+</head>
+<body style="font-family: Arial; padding: 10px; width: 300px;">
+  <h3>XPath Poster</h3>
+
+  <label>Input XPath:</label><br/>
+  <input type="text" id="inputXPath" style="width: 100%;"><br/><br/>
+
+  <label>Post Button XPath:</label><br/>
+  <input type="text" id="buttonXPath" style="width: 100%;"><br/><br/>
+
+  <label>Post Interval (seconds):</label><br/>
+  <input type="number" id="postInterval" min="1" value="60" style="width: 100%;"><br/><br/>
+
+  <label>Upload Posts (JSON):</label><br/>
+  <input type="file" id="jsonFile"><br/><br/>
+
+  <button id="startBtn">Start Posting</button>
+  <button id="stopBtn">Stop</button>
+  <div id="status" style="margin-top: 10px;">Status: Idle</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

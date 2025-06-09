@@ -21,37 +21,48 @@ function runPostLoop() {
 
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
-        func: (inputXPath, buttonXPath, content) => {
+        func: async (inputXPath, buttonXPath, content) => {
           function getElementByXPath(xpath) {
             return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
           }
 
-          const inputEl = getElementByXPath(inputXPath);
-          const buttonEl = getElementByXPath(buttonXPath);
+          function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+          }
 
-          if (inputEl && buttonEl) {
-            inputEl.focus();
-
+          async function typeLikeHuman(el, text) {
+            el.focus();
             const range = document.createRange();
-            range.selectNodeContents(inputEl);
+            range.selectNodeContents(el);
             range.collapse(false);
 
             const sel = window.getSelection();
             sel.removeAllRanges();
             sel.addRange(range);
 
-            document.execCommand("insertText", false, content);
-            inputEl.dispatchEvent(new Event("input", { bubbles: true }));
+            for (let char of text) {
+              document.execCommand("insertText", false, char);
+              el.dispatchEvent(new Event("input", { bubbles: true }));
+              await delay(50 + Math.random() * 100); // 50–150ms per keystroke
+            }
+          }
 
-            setTimeout(() => buttonEl.click(), 500);
+          const inputEl = getElementByXPath(inputXPath);
+          const buttonEl = getElementByXPath(buttonXPath);
+
+          if (inputEl && buttonEl) {
+            await typeLikeHuman(inputEl, content);
+            const postDelay = 1000 + Math.random() * 2000; // 1–3s delay before clicking
+            await delay(postDelay);
+            buttonEl.click();
           }
         },
         args: [res.inputXPath, res.buttonXPath, content]
       }, () => {
         const nextIndex = res.currentIndex + 1;
         chrome.storage.local.set({ currentIndex: nextIndex }, () => {
-          const delay = (res.postInterval || 60) * 1000;
-          postTimer = setTimeout(runPostLoop, delay);
+          const delayMs = (res.postInterval || 60) * 1000;
+          postTimer = setTimeout(runPostLoop, delayMs);
         });
       });
     });

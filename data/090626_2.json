@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "content": "Most 'clean architecture' projects end up being overengineered spaghetti with a resume filter slapped on."
+    },
+    {
+      "id": 2,
+      "content": "Every time someone says 'you should rewrite it in Rust,' an engineer adds 6 months to their roadmap."
+    },
+    {
+      "id": 3,
+      "content": "If your web app needs a loading spinner for local state changes, you might be using the wrong framework."
+    }
+  ]
+  

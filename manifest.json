@@ -1,18 +1,17 @@
 {
-    "manifest_version": 3,
-    "name": "TwT auto shitposter",
-    "version": "1.2",
-    "description": "Auto-posts content using XPath and uploaded JSON.",
-    "permissions": [
-      "storage",
-      "scripting",
-      "activeTab"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html"
-    }
+  "manifest_version": 3,
+  "name": "XPath Auto Poster",
+  "version": "1.4",
+  "description": "Auto-posts content using XPath and uploaded JSON with human-like typing.",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
   }
-  
+}
